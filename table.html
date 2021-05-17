@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<title>Table V03</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="table/vendor/bootstrap/css/bootstrap.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="table/vendor/animate/animate.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="table/vendor/select2/select2.min.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="table/vendor/perfect-scrollbar/perfect-scrollbar.css">
+	<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="table/css/util.css">
+	<link rel="stylesheet" type="text/css" href="table/css/main.css">
+	<!--===============================================================================================-->
+</head>
+
+<body>
+
+	<div class="limiter">
+		<div class="container-table100">
+			<div class="wrap-table100">
+				<div class="table100 ver1 m-b-110">
+					<table data-vertable="ver1">
+						<thead>
+							<tr class="row100 head">
+								<th class="column100 column1 fixedPos" data-column="column1"></th>
+								<th colspan="2" class="column100 column2 center fixedPos" data-column="column2">Round 1</th>
+								<th colspan="5" class="column100 column3 center fixedPos" data-column="column3">Round 2</th>
+							</tr>
+							<tr class="row100 head">
+								<th class="column100 column1 fixedPos" data-column="column1">Occupation</th>
+								<th class="column100 column2 fixedPos" data-column="column2">Savings</th>
+								<th class="column100 column2 fixedPos" data-column="column3">Balance</th>
+								<th class="column100 column3 fixedPos" data-column="column3">Start CC</th>
+								<th class="column100 column3 fixedPos" data-column="column3">Rupiah</th>
+								<th class="column100 column3 fixedPos" data-column="column3">CC in Cash</th>
+								<th class="column100 column3 fixedPos" data-column="column3">CC Balance</th>
+								<th class="column100 column3 fixedPos" data-column="column3">Rupiah Balance</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Tailor</td>
+								<td class="column100 column2" data-column="column2">50,000</td>
+								<td class="column100 column2" data-column="column2" id="tailor_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">50,000</td>
+								<td class="column100 column3" data-column="column3" id="tailor_c2"></td>
+								<td class="column100 column3" data-column="column3" id="tailor_c3"></td>
+								<td class="column100 column3" data-column="column3" id="tailor_bal2"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Vege Farmer</td>
+								<td class="column100 column2" data-column="column2">100,000</td>
+								<td class="column100 column2" data-column="column2" id="vegeFarmer_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">100,000</td>
+								<td class="column100 column3" data-column="column3" id="vegeFarmer_c2"></td>
+								<td class="column100 column3" data-column="column3" id="vegeFarmer_c3"></td>
+								<td class="column100 column3" data-column="column3" id="vegeFarmer_bal2"></td>
+							</tr>
+
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Rice Farmer</td>
+								<td class="column100 column2" data-column="column2">-50,000</td>
+								<td class="column100 column2" data-column="column2" id="riceFarmer_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">-50,000</td>
+								<td class="column100 column3" data-column="column3" id="riceFarmer_c2"></td>
+								<td class="column100 column3" data-column="column3" id="riceFarmer_c3"></td>
+								<td class="column100 column3" data-column="column3" id="riceFarmer_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Food Vendor</td>
+								<td class="column100 column2" data-column="column2">50,000</td>
+								<td class="column100 column2" data-column="column2" id="foodVendor_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">50,000</td>
+								<td class="column100 column3" data-column="column3" id="foodVendor_c2"></td>
+								<td class="column100 column3" data-column="column3" id="foodVendor_c3"></td>
+								<td class="column100 column3" data-column="column3" id="foodVendor_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Herbal Doctor</td>
+								<td class="column100 column2" data-column="column2">-50,000</td>
+								<td class="column100 column2" data-column="column2" id="doctor_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">-50,000</td>
+								<td class="column100 column3" data-column="column3" id="doctor_c2"></td>
+								<td class="column100 column3" data-column="column3" id="doctor_c3"></td>
+								<td class="column100 column3" data-column="column3" id="doctor_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Labourer</td>
+								<td class="column100 column2" data-column="column2">-70,000</td>
+								<td class="column100 column2" data-column="column2" id="labourer_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">-70,000</td>
+								<td class="column100 column3" data-column="column3" id="labourer_c2"></td>
+								<td class="column100 column3" data-column="column3" id="labourer_c3"></td>
+								<td class="column100 column3" data-column="column3" id="labourer_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Weaver</td>
+								<td class="column100 column2" data-column="column2">30,000</td>
+								<td class="column100 column2" data-column="column2" id="weaver_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">30,000</td>
+								<td class="column100 column3" data-column="column3" id="weaver_c2"></td>
+								<td class="column100 column3" data-column="column3" id="weaver_c3"></td>
+								<td class="column100 column3" data-column="column3" id="weaver_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Fisher</td>
+								<td class="column100 column2" data-column="column2">50,000</td>
+								<td class="column100 column2" data-column="column2" id="fisher_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">50,000</td>
+								<td class="column100 column3" data-column="column3" id="fisher_c2"></td>
+								<td class="column100 column3" data-column="column3" id="fisher_c3"></td>
+								<td class="column100 column3" data-column="column3" id="fisher_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Homemaker</td>
+								<td class="column100 column2" data-column="column2">0</td>
+								<td class="column100 column2" data-column="column2" id="homemaker_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3" id="homemaker_c2"></td>
+								<td class="column100 column3" data-column="column3" id="homemaker_c3"></td>
+								<td class="column100 column3" data-column="column3" id="homemaker_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Fruit Farmer</td>
+								<td class="column100 column2" data-column="column2">-10,000</td>
+								<td class="column100 column2" data-column="column2" id="fruitFarmer_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">-10,000</td>
+								<td class="column100 column3" data-column="column3" id="fruitFarmer_c2"></td>
+								<td class="column100 column3" data-column="column3" id="fruitFarmer_c3"></td>
+								<td class="column100 column3" data-column="column3" id="fruitFarmer_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Mechanic</td>
+								<td class="column100 column2" data-column="column2">50,000</td>
+								<td class="column100 column2" data-column="column2" id="mechanic_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">50,000</td>
+								<td class="column100 column3" data-column="column3" id="mechanic_c2"></td>
+								<td class="column100 column3" data-column="column3" id="mechanic_c3"></td>
+								<td class="column100 column3" data-column="column3" id="mechanic_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Merchant</td>
+								<td class="column100 column2" data-column="column2">300,000</td>
+								<td class="column100 column2" data-column="column2" id="merchant_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">300,000</td>
+								<td class="column100 column3" data-column="column3" id="merchant_c2"></td>
+								<td class="column100 column3" data-column="column3" id="merchant_c3"></td>
+								<td class="column100 column3" data-column="column3" id="merchant_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1"></td>
+								<td class="column100 column2" data-column="column2">450,000</td>
+								<td class="column100 column2" data-column="column2"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">450,000</td>
+								<td class="column100 column3" data-column="column3"></td>
+								<td class="column100 column3" data-column="column3"></td>
+								<td class="column100 column3" data-column="column3"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Money Lender</td>
+								<td class="column100 column2" data-column="column2">500,000</td>
+								<td class="column100 column2" data-column="column2" id="moneyLender_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">500,000</td>
+								<td class="column100 column3" data-column="column3" id="moneyLender_c2"></td>
+								<td class="column100 column3" data-column="column3" id="moneyLender_c3"></td>
+								<td class="column100 column3" data-column="column3" id="moneyLender_bal2"></td>
+							</tr>
+							<tr class="row100">
+								<td class="column100 column1" data-column="column1">Total</td>
+								<td class="column100 column2" data-column="column2">1,000,000</td>
+								<td class="column100 column2" data-column="column2" id="total_bal"></td>
+								<td class="column100 column3" data-column="column3">0</td>
+								<td class="column100 column3" data-column="column3">1,000,000</td>
+								<td class="column100 column3" data-column="column3" id="total_c2"></td>
+								<td class="column100 column3" data-column="column3" id="total_c3"></td>
+								<td class="column100 column3" data-column="column3" id="total_bal2"></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+				<!--===============================================================================================-->
+				<script src="table/vendor/jquery/jquery-3.2.1.min.js"></script>
+				<!--===============================================================================================-->
+				<script src="table/vendor/bootstrap/js/popper.js"></script>
+				<script src="table/vendor/bootstrap/js/bootstrap.min.js"></script>
+				<!--===============================================================================================-->
+				<script src="table/vendor/select2/select2.min.js"></script>
+				<!--===============================================================================================-->
+				<script src="table/js/main.js"></script>
+
+</body>
+
+</html>

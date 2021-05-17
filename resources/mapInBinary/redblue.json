@@ -1,0 +1,14 @@
+{ "columns":50,
+ "image":"sprite\/redblue.jpg",
+ "imageheight":387,
+ "imagewidth":800,
+ "margin":0,
+ "name":"redblue",
+ "spacing":0,
+ "tilecount":1200,
+ "tiledversion":"1.4.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":1.4
+}

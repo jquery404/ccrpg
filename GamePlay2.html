@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html>
+<title>The Community Currency Role Play</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="stylesheet.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="table/vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="table/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="table/vendor/animate/animate.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="table/vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="table/vendor/perfect-scrollbar/perfect-scrollbar.css">
+<!--===============================================================================================-->
+<link rel="stylesheet" type="text/css" href="table/css/util.css">
+<link rel="stylesheet" type="text/css" href="table/css/main.css">
+<!--===============================================================================================-->
+<style>
+  /*body,h1 {font-family: "Raleway", sans-serif}*/
+  body,
+  h1 {
+    font-family: "Comic Sans MS", cursive, sans-serif
+  }
+
+  body,
+  html {
+    height: 100%
+  }
+
+  .bgimg {
+    background-image: url('resources/sprite/shoppingPanel.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+
+  /* tooltips */
+  #coinfly {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    margin-left: -200px;
+    margin-top: -150px;
+    z-index: 1;
+  }
+
+  .tooltipper {
+    width: 90px;
+    height: 60px;
+    border: 3px solid #e3e3e3;
+    border-radius: 1em;
+    background: #692706;
+    z-index: 4;
+    position: absolute;
+    transform: skew(0deg, 30deg);
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 12px;
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    display: none;
+  }
+
+  .bounce-1 {
+    animation-name: bounce-1;
+    animation-timing-function: ease;
+  }
+
+  .bounce-2 {
+    animation-name: bounce-2;
+    animation-timing-function: ease;
+  }
+
+  @keyframes bounce-1 {
+    0% {
+      transform: skew(0deg, 30deg) scale(1, 1) translateY(0);
+    }
+
+    10% {
+      transform: skew(0deg, 30deg) scale(1.1, .9) translateY(0);
+    }
+
+    30% {
+      transform: skew(0deg, 30deg) scale(.9, 1.1) translateY(-50px);
+    }
+
+    50% {
+      transform: skew(0deg, 30deg) scale(1, 1) translateY(0);
+    }
+
+    57% {
+      transform: skew(0deg, 30deg) scale(1, 1) translateY(-7px);
+    }
+
+    64% {
+      transform: skew(0deg, 30deg) scale(1, 1) translateY(0);
+    }
+
+    100% {
+      transform: skew(0deg, 30deg) scale(1, 1) translateY(0);
+    }
+  }
+
+  @keyframes bounce-2 {
+    0% {
+      transform: skew(0deg, -30deg) scale(1, 1) translateY(0);
+    }
+
+    10% {
+      transform: skew(0deg, -30deg) scale(1.1, .9) translateY(0);
+    }
+
+    30% {
+      transform: skew(0deg, -30deg) scale(.9, 1.1) translateY(-50px);
+    }
+
+    50% {
+      transform: skew(0deg, -30deg) scale(1, 1) translateY(0);
+    }
+
+    57% {
+      transform: skew(0deg, -30deg) scale(1, 1) translateY(-7px);
+    }
+
+    64% {
+      transform: skew(0deg, -30deg) scale(1, 1) translateY(0);
+    }
+
+    100% {
+      transform: skew(0deg, -30deg) scale(1, 1) translateY(0);
+    }
+  }
+
+  .bagimg {
+    background-image: url('resources/sprite/bagPanel.png');
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  .wrapbagspan{border: 2px solid #382210; background-color: #754721; color: #fff; display: block; padding: 0 2em; margin: 0 0 0.25em;}
+
+  ul {
+    padding: 0
+  }
+
+  .list-group-item {
+    position: relative;
+    display: block;
+    padding: .75rem 1.25rem;
+    margin-bottom: -1px;
+    background-color: #fff;
+    border: 1px solid rgba(0, 0, 0, .125);
+  }
+
+  .badge-primary {
+    color: #fff;
+    background-color: #6f2907;
+  }
+
+  .badge-secondary {
+    color: #111;
+    background-color: #ffeb3b;
+  }
+
+  .badge-pill {
+    padding-right: .6em;
+    padding-left: .6em;
+    border-radius: 10rem;
+  }
+
+  .badge {
+    display: inline-block;
+    padding: .25em .4em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25rem;
+  }
+
+  .list-group-item.active {
+    z-index: 2;
+    color: #fff;
+    background-color: #de8505;
+    border-color: #df8605;
+  }
+
+  #coinfly {
+    position: absolute;
+    top: 50%;
+    left: 18%;
+    margin-left: -200px;
+    margin-top: -150px;
+    z-index: 20;
+  }
+
+  #stats {
+    position: absolute;
+    bottom: 0;
+  }
+
+  #stats span {
+    background: #bf6e4e;
+    padding: 0 10px;
+    color: #fff;
+    font-weight: 700;
+  }
+
+  #stats span img {
+    width: 25px;
+  }
+
+  .ttip {
+    position: relative;
+    display: inline-block;
+  }
+
+  .ttip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+  }
+
+  .ttip:hover .tooltiptext {
+    visibility: visible;
+  }
+
+  .tooltip-left {
+    top: -5px;
+    bottom: auto;
+    right: 128%;
+  }
+
+  .bagHover {
+    position: absolute;
+    top: 22px;
+    width: 4em;
+    height: 4em;
+    left: 0;
+  }
+
+  .prevbag {
+    margin-top: 70px;
+  }
+
+  .mybagOpen {
+    width: 4em;
+    height: 4em;
+    position: absolute;
+    top: 80px;
+    left: 0px;
+  }
+</style>
+
+<body>
+
+  <!-- !Game Desktop CONTENT! -->
+  <canvas class="w3-display-container w3-animate-opacity w3-text-white"
+    style="width:80%; height: 100%; border:  1px solid black;" id="gameCanvas" onclick="getMousePosition(event)"
+    onkeydown="listeningKeyBoardPressingDown(event)" onkeyup="listeningKeyBoardRelease(event)">
+  </canvas>
+  <!-- red down arrow -->
+  <div class="bounce" id="downArrow" style="z-index: 0;">
+    <img id="bigArrow" width="15" height="30" alt="" src="resources/sprite/arrow.png"/>
+  </div>
+
+  <div id="tooltips" class="tooltipper"></div>
+  <div id="coinfly"></div>
+
+
+  <!-- offerlist/summary sheet -->
+  <div class="w3-sidebar w3-bar-block w3-border-right w3-display-topleft" style="display:none" id="mySidebar">
+    <button onclick="w3_close()" class="w3-bar-item w3-large">Close &times;</button>
+    <div id="listOffers">
+      <ul class="list-group round1" style="display: none;">
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Vegetable Farmer</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Vegetables <span class="badge badge-primary badge-pill">*</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Rice Farmer</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Rice <span class="badge badge-primary badge-pill">*</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Local Tobacco <span class="badge badge-primary badge-pill">*</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Food Vendor</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Lunch <span class="badge badge-primary badge-pill">4,000</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Herbal Doctor</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Herbal Medecine <span class="badge badge-primary badge-pill">0</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Natural Dyes <span class="badge badge-primary badge-pill">1,000</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Natural Insecticide <span class="badge badge-primary badge-pill">3,000</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Labourer</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Labour <span class="badge badge-primary badge-pill">7,000</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Traditional Homemade Noodles <span class="badge badge-primary badge-pill">*</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Weaver</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Traditional Cloth <span class="badge badge-primary badge-pill">5,000</span>
+        </li>
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Fisher</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fish <span class="badge badge-primary badge-pill">*</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Homemaker</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Babysitting <span class="badge badge-primary badge-pill">0</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Cotton <span class="badge badge-primary badge-pill">*</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Fruit Farmer</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fruit <span class="badge badge-primary badge-pill">*</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Mechanics</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fix Engine <span class="badge badge-primary badge-pill">12,000</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Merchant</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Gudang Garam Cigarettes <span class="badge badge-primary badge-pill">3,000</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Local Tobacco <span class="badge badge-primary badge-pill">1,500</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Vegetables <span class="badge badge-primary badge-pill">3,000</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fruit <span class="badge badge-primary badge-pill">9,000</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fish <span class="badge badge-primary badge-pill">9,000</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Money Lender</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Credit <span class="badge badge-primary badge-pill">*</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Outsider</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Factory Cloth <span class="badge badge-primary badge-pill">10,000</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Rice <span class="badge badge-primary badge-pill">3,500</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Gudang Garam Cigarettes <span class="badge badge-primary badge-pill">*</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Chemical Insecticide <span class="badge badge-primary badge-pill">8,000</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Factory Made Noodles <span class="badge badge-primary badge-pill">*</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Factory Thread/Chemical Dyes <span class="badge badge-primary badge-pill">3,000</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Engine Parts <span class="badge badge-primary badge-pill">7,000</span>
+        </li>
+
+
+      </ul>
+
+      <ul class="list-group round2">
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Vegetable Farmer</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Vegetables <span class="badge badge-primary badge-pill">40</span> <span
+            class="badge badge-secondary badge-pill">20CC</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Rice Farmer</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Rice <span class="badge badge-primary badge-pill">40</span> <span
+            class="badge badge-secondary badge-pill">20CC</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Rice Whiskey <span class="badge badge-primary badge-pill">*</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Food Vendor</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Lunch <span class="badge badge-primary badge-pill">20</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Herbal Doctor</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Herbal Medecine <span class="badge badge-primary badge-pill">50</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Natural Dyes <span class="badge badge-primary badge-pill">10</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Natural Insecticide <span class="badge badge-primary badge-pill">20</span> <span
+            class="badge badge-secondary badge-pill">20CC</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Labourer</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Labour <span class="badge badge-primary badge-pill">100</span> <span
+            class="badge badge-secondary badge-pill">100CC</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Traditional Homemade Noodles <span class="badge badge-primary badge-pill">10</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Weaver</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Traditional Cloth <span class="badge badge-primary badge-pill">50</span> <span
+            class="badge badge-secondary badge-pill">20CC</span>
+        </li>
+
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Fisher</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fish <span class="badge badge-primary badge-pill">80</span> <span
+            class="badge badge-secondary badge-pill">40CC</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Homemaker</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Babysitting <span class="badge badge-primary badge-pill">100</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Cotton <span class="badge badge-primary badge-pill">*</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Fruit Farmer</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fruit <span class="badge badge-primary badge-pill">30</span> <span
+            class="badge badge-secondary badge-pill">40CC</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Mechanics</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fix Engine <span class="badge badge-primary badge-pill">50</span> <span
+            class="badge badge-secondary badge-pill">50CC</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Merchant</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Brand Name Whiskey <span class="badge badge-primary badge-pill">100</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Rice Whiskey <span class="badge badge-primary badge-pill">50</span> <span
+            class="badge badge-secondary badge-pill">40CC</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Vegetables <span class="badge badge-primary badge-pill">70</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fruit <span class="badge badge-primary badge-pill">90</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Fish <span class="badge badge-primary badge-pill">150</span>
+        </li>
+
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Money Lender</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Credit <span class="badge badge-primary badge-pill">*</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center active">Outsider</li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Factory Cloth <span class="badge badge-primary badge-pill">100</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Rice <span class="badge badge-primary badge-pill">70</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Brand Name Whiskey <span class="badge badge-primary badge-pill">*</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Chemical Insecticide <span class="badge badge-primary badge-pill">100</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Factory Made Noodles <span class="badge badge-primary badge-pill">*</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Factory Thread/Chemical Dyes <span class="badge badge-primary badge-pill">30</span>
+        </li>
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+          Engine Parts <span class="badge badge-primary badge-pill">50</span>
+        </li>
+
+
+      </ul>
+    </div>
+  </div>
+
+  <!-- button for openning the offerlist/summary sheet -->
+  <button class="w3-button w3-teal w3-xlarge w3-display-topleft" onclick="w3_open()">Offer List</button>
+
+  <div class="clickAreaParent" id="clickingAreaDiv">
+    <div class="clickArea" alt="doctor" id="doctorArea" style="width: 70px; height: 50px; left: 205px; top: 380px;">
+    </div>
+    <div class="clickArea" alt="outsider" id="outsiderArea"
+      style="width: 120px; height: 80px; left: 120px; top: 530px;"></div>
+    <div class="clickArea" alt="money lender" id="moneylenderArea"
+      style="width: 50px; height: 40px; left: 320px; top: 450px;"></div>
+    <div class="clickArea" alt="tailor" id="tailorArea" style="width: 50px; height: 50px; left: 425px; top: 400px;">
+    </div>
+    <div class="clickArea" alt="weaver" id="weaverArea" style="width: 50px; height: 50px; left: 620px; top: 370px;">
+    </div>
+    <div class="clickArea" alt="merchant" id="merchantArea"
+      style="width: 150px; height: 70px; left: 500px; top: 260px;"></div>
+    <div class="clickArea" alt="labourer" id="labourerArea"
+      style="width: 100px; height: 50px; left: 300px; top: 210px;"></div>
+    <div class="clickArea" alt="food vendor" id="foodVendorArea"
+      style="width: 50px; height: 60px; left: 435px; top: 225px;"></div>
+    <div class="clickArea" alt="Vege Farmer" id="vegeFarmerArea"
+      style="width: 100px; height: 70px; left: 170px; top: 190px;"></div>
+    <div class="clickArea" alt="rice farmer" id="riceFarmerArea"
+      style="width: 60px; height: 60px; left: 450px; top: 120px;"></div>
+    <div class="clickArea" alt="fisher" id="fisherArea" style="width: 60px; height: 60px; left: 515px; top: 75px;">
+    </div>
+    <div class="clickArea" alt="fruit farmer" id="fruitFarmerArea"
+      style="width: 100px; height: 50px; left: 870px; top: 150px;"></div>
+    <div class="clickArea" alt="homemaker" id="homemakerArea"
+      style="width: 70px; height: 50px; left: 790px; top: 450px;"></div>
+    <div class="clickArea" alt="mechanic" id="mechanicArea"
+      style="width: 150px; height: 70px; left: 850px; top: 510px;"></div>
+    <div class="clickArea" alt="bank" id="bankArea" style="width: 100px; height: 50px; left: 590px; top: 560px;"></div>
+  </div>
+
+  <!-- shop panel -->
+  <div id="shopDivContainer" class="bgimg w3-display-middle w3-container"
+    style="display:none; position: absolute; width: 40%; height: 50%; margin-left: -9%; z-index: 10;">
+    <button class="w3-display-topright"
+      style="margin-top: 5%; margin-right: 4%; width: 10%; height: 12%; border: none; background-color:transparent; z-index: 12;"
+      onclick="shop_close()"><img src="resources/materials/close.png" width="100%"></button>
+
+    <div id="shopPanelContainer" class="w3-row w3-display-topmiddle w3-center"
+      style="margin-top: 4%; margin-left: -0.4%; width: 90%; height: 85%;">
+      <!-- shop part/Left part -->
+      <div id="shopPanel" class="w3-col w3-container" style="width: 49%; height: 100%; margin-right: 2.7%;">
+        <!-- shop title -->
+        <p id="shopTitleText" class="w3-xlarge shopTitleText w3-round-large" style="margin-top: 5%;font-size: 20px !important;"></p>
+        <!-- items list -->
+        <div id="shopBox" style="border: 2px solid black; height: 65%; margin-top: 3%;">
+          <div class="shopItemContainer scroll-box" id="shopItemContainer">
+          </div>
+        </div>
+
+        <!-- trasactions deatils -->
+        <div class="w3-container w3-left w3-row shopTitleText" style="margin-top: 3%; width: 100%; padding:0;">
+          <div class="w3-col" style="width: 50%;">
+            <div class="w3-left w3-round-medium"
+              style="width: 100%; height: 35%; margin-top: 5%; margin-left: 8%; margin-right: 3%;">
+              <img src="resources/cards/Icons/coupon.png" class="w3-left w3-round-medium"
+              style="width: 18px;margin-right: 3%; margin-left: 5%;">
+            <p id="spentCoupon" class="w3-medium w3-left" style="font-size: 13px !important;"></p>
+            </div>
+          </div>
+          <div class="w3-rest">
+            <img src="resources/materials/money.png" class="w3-left w3-round-medium"
+              style="width: 30px;margin-right: 3%; margin-left: 5%;">
+            <p id="spentMoney" class="w3-small w3-left" style="margin-top:3%;"></p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Player part/right part -->
+      <div id="playerPanel" class="w3-col w3-container" style="width: 48.3%; height: 100%;">
+        <!-- player title -->
+        <p id="playerTitleText" class="w3-xlarge shopTitleText w3-round-large" style="margin-top: 5%;font-size: 20px !important;">You</p>
+        <!-- item list -->
+        <div id="shopBox" style="border: 2px solid black; height: 65%; margin-top: 3%;">
+          <div class="dropZone scroll-box" id="playerItemContainer" ondragover="onDragOver(event);"
+            ondrop="onDrop(event);">
+
+          </div>
+        </div>
+        <!-- rest amount/personal info -->
+        <div class="w3-container w3-left w3-row shopTitleText" style="margin-top: 3%;">
+          <div class="w3-col" style="width: 50%;">
+            <div class="w3-left w3-round-medium"
+              style="width: 23%; height: 23%; margin-top: 5%; margin-right: 3%;">
+            </div>
+            <img src="resources/cards/Icons/coupon.png" class="w3-left w3-round-medium"
+              style="width: 18px;margin-right: 3%; margin-left: 5%;margin-top: 3px;">
+            <p id="playerCoupon" class="w3-small w3-left" style="margin-top: 3px;"></p>
+          </div>
+          <!-- <div class="w3-col" style="width: 33.3%; margin-top: 2%;">
+
+              </div> -->
+          <div class="w3-rest">
+            <img src="resources/materials/money.png" class="w3-left w3-round-medium"
+              style="width: 42%; height: 42%; margin-right: 2%; margin-right: 3%;">
+            <p id="playerMoney" class="w3-small w3-left" style="margin-top:3%;"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- player bag panel -->
+  <div id="playerBagContainer" class="bagimg w3-display-middle w3-container"
+    style="display:none; position: absolute; width: 40%; height: 50%; margin-left: -9%;">
+    <button class="w3-display-topright"
+      style="margin-top: 5%; margin-right: 4%; width: 10%; height: 12%; border: none; background-color:transparent; z-index: 111;"
+      onclick="playerbag_close()"><img src="resources/materials/close.png" width="100%"></button>
+
+    <div id="shopPanelContainer" class="w3-row w3-display-topmiddle w3-center"
+      style="margin-top: 4%; margin-left: -0.4%; width: 50%; height: 85%;">
+      <!-- <div id="ppbag" class="prevbag"></div> -->
+      <p class="w3-xlarge shopTitleText w3-round-large" style="margin-top:5%;"> Your Bag</p>
+      <!-- items list -->
+      <div id="shopBox" style="border: 2px solid black; height: 75%; margin-top: 3%;">
+        <div class="shopItemContainer scroll-box" id="ppbag">
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- System News Function/Right side -->
+  <div class="w3-container profile w3-text-blue w3-display-topright" style="width: 20%; height: 70%;">
+    <!-- System + Chat message panel -->
+    <div class="w3-row w3-section">
+      <div id="activity" class="w3-round-large" style="padding: 2px;">
+        <!-- 30rows -->
+        <textarea readonly class="w3-input w3-border w3-round-large" style="resize:none; padding: 0;" rows="16"
+          id="messageDisplayArea"></textarea>
+      </div>
+      <!-- Input Panel and Return butotn -->
+      <div class="">
+        <input class="w3-input w3-border w3-display-bottomleft w3-padding w3-round-large" name="message" type="text"
+          placeholder="Message" style="width:65%; margin-left: 5%; margin-bottom: 2%;" id="inputMessageId">
+        <button class="w3-button profileButton w3-ripple w3-display-bottomright w3-round-xlarge"
+          style="margin-right: 1%; margin-bottom: 2%;" onclick="sendingChatMessage()"
+          id="messageSendingButtonId">Send</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Profile Function -->
+  <div class="w3-container profile w3-text-blue w3-display-bottomright" style="width: 20%; height: 30%;">
+    <img src="resources/tailors.png" width="80%" />
+    <div class="bagHover ttip"><span class="tooltiptext tooltip-left">
+        Dress/Shirt<br />Price: 15,000</span></div>
+    <div class="mybagOpen" onclick="playerbag_open()"></div>
+    <div style="right: 65px;" id="stats">
+      <span id="sav"></span>
+      <span id="sav_cc"></span>
+    </div>
+  </div>
+
+
+  <!-- button for openning the summary sheet -->
+<!--   <button class="w3-button w3-xlarge w3-display-topleft summarybutton" onclick="summary_open()">Summary Table</button> -->
+
+  <!-- summary table -->
+    <div class="limiter summarytable" id="summarytable" style="position: fixed;">
+      <button onclick="summary_close()" class="w3-bar-item w3-xxlarge tableclosebtn fixedPos" style="position: absolute; z-index: 1;">Close &times;</button>
+      <!-- <button onclick="summary_close()" class="w3-bar-item w3-xxlarge tableclosebtn fixedPos" style="position: absolute; z-index: 1;background-color: #509f88;">Round 2 </button> -->
+      <div class="container-table100">
+        <div class="wrap-table100">
+          <div class="table100 ver1 m-b-110" style="margin: 0;">
+            <table data-vertable="ver1">
+              <thead>
+                <tr class="row100 head">
+                  <th class="column100 column1 fixedPos" data-column="column1"></th>
+                  <th colspan="2" class="column100 column2 center fixedPos" data-column="column2">Round 1</th>
+                  <th colspan="5" class="column100 column3 center fixedPos" data-column="column3">Round 2</th>
+                </tr>
+                <tr class="row100 head">
+                  <th class="column100 column1 fixedPos" data-column="column1">Occupation</th>
+                  <th class="column100 column2 fixedPos" data-column="column2">Savings</th>
+                  <th class="column100 column2 fixedPos" data-column="column3">Balance</th>
+                  <th class="column100 column3 fixedPos" data-column="column3">Start CC</th>
+                  <th class="column100 column3 fixedPos" data-column="column3">Rupiah</th>
+                  <th class="column100 column3 fixedPos" data-column="column3">CC in Cash</th>
+                  <th class="column100 column3 fixedPos" data-column="column3">CC Balance</th>
+                  <th class="column100 column3 fixedPos" data-column="column3">Rupiah Balance</th>
+                </tr>
+              </thead>
+              <tbody id="summaryTbody">
+                
+
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Vege Farmer</td>
+                  <td class="column100 column2" data-column="column2">100,000</td>
+                  <td class="column100 column2" data-column="column2" id="vegeFarmer_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">100,000</td>
+                  <td class="column100 column3" data-column="column3" id="vegeFarmer_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="vegeFarmer_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="vegeFarmer_bal2"></td>
+                </tr>
+
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Rice Farmer</td>
+                  <td class="column100 column2" data-column="column2">-50,000</td>
+                  <td class="column100 column2" data-column="column2" id="riceFarmer_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">-50,000</td>
+                  <td class="column100 column3" data-column="column3" id="riceFarmer_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="riceFarmer_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="riceFarmer_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Food Vendor</td>
+                  <td class="column100 column2" data-column="column2">50,000</td>
+                  <td class="column100 column2" data-column="column2" id="foodVendor_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">50,000</td>
+                  <td class="column100 column3" data-column="column3" id="foodVendor_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="foodVendor_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="foodVendor_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Herbal Doctor</td>
+                  <td class="column100 column2" data-column="column2">-50,000</td>
+                  <td class="column100 column2" data-column="column2" id="doctor_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">-50,000</td>
+                  <td class="column100 column3" data-column="column3" id="doctor_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="doctor_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="doctor_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Labourer</td>
+                  <td class="column100 column2" data-column="column2">-70,000</td>
+                  <td class="column100 column2" data-column="column2" id="labourer_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">-70,000</td>
+                  <td class="column100 column3" data-column="column3" id="labourer_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="labourer_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="labourer_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Weaver</td>
+                  <td class="column100 column2" data-column="column2">30,000</td>
+                  <td class="column100 column2" data-column="column2" id="weaver_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">30,000</td>
+                  <td class="column100 column3" data-column="column3" id="weaver_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="weaver_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="weaver_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Fisher</td>
+                  <td class="column100 column2" data-column="column2">50,000</td>
+                  <td class="column100 column2" data-column="column2" id="fisher_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">50,000</td>
+                  <td class="column100 column3" data-column="column3" id="fisher_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="fisher_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="fisher_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Homemaker</td>
+                  <td class="column100 column2" data-column="column2">0</td>
+                  <td class="column100 column2" data-column="column2" id="homemaker_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3" id="homemaker_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="homemaker_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="homemaker_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Fruit Farmer</td>
+                  <td class="column100 column2" data-column="column2">-10,000</td>
+                  <td class="column100 column2" data-column="column2" id="fruitFarmer_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">-10,000</td>
+                  <td class="column100 column3" data-column="column3" id="fruitFarmer_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="fruitFarmer_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="fruitFarmer_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Mechanic</td>
+                  <td class="column100 column2" data-column="column2">50,000</td>
+                  <td class="column100 column2" data-column="column2" id="mechanic_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">50,000</td>
+                  <td class="column100 column3" data-column="column3" id="mechanic_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="mechanic_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="mechanic_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Merchant</td>
+                  <td class="column100 column2" data-column="column2">300,000</td>
+                  <td class="column100 column2" data-column="column2" id="merchant_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">300,000</td>
+                  <td class="column100 column3" data-column="column3" id="merchant_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="merchant_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="merchant_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1"></td>
+                  <td class="column100 column2" data-column="column2">450,000</td>
+                  <td class="column100 column2" data-column="column2"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">450,000</td>
+                  <td class="column100 column3" data-column="column3"></td>
+                  <td class="column100 column3" data-column="column3"></td>
+                  <td class="column100 column3" data-column="column3"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Money Lender</td>
+                  <td class="column100 column2" data-column="column2">500,000</td>
+                  <td class="column100 column2" data-column="column2" id="moneyLender_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">500,000</td>
+                  <td class="column100 column3" data-column="column3" id="moneyLender_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="moneyLender_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="moneyLender_bal2"></td>
+                </tr>
+                <tr class="row100">
+                  <td class="column100 column1" data-column="column1">Total</td>
+                  <td class="column100 column2" data-column="column2">1,000,000</td>
+                  <td class="column100 column2" data-column="column2" id="total_bal"></td>
+                  <td class="column100 column3" data-column="column3">0</td>
+                  <td class="column100 column3" data-column="column3">1,000,000</td>
+                  <td class="column100 column3" data-column="column3" id="total_c2"></td>
+                  <td class="column100 column3" data-column="column3" id="total_c3"></td>
+                  <td class="column100 column3" data-column="column3" id="total_bal2"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+
+<script src="scripts/scriptscc.js"></script>
+<script src="scripts/entitiescc.js"></script>
+<script src="scripts/maincc.js"></script>
+
+<!--===============================================================================================-->
+<script src="table/vendor/jquery/jquery-3.2.1.min.js"></script>
+<!--===============================================================================================-->
+<script src="table/vendor/bootstrap/js/popper.js"></script>
+<script src="table/vendor/bootstrap/js/bootstrap.min.js"></script>
+<!--===============================================================================================-->
+<script src="table/vendor/select2/select2.min.js"></script>
+<!--===============================================================================================-->
+<script src="table/js/main.js"></script>
+
+</html>

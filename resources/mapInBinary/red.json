@@ -1,0 +1,14 @@
+{ "columns":25,
+ "image":"sprite\/5103538.jpg",
+ "imageheight":194,
+ "imagewidth":408,
+ "margin":0,
+ "name":"red",
+ "spacing":0,
+ "tilecount":300,
+ "tiledversion":"1.4.2",
+ "tileheight":16,
+ "tilewidth":16,
+ "type":"tileset",
+ "version":1.4
+}
