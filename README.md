@@ -15,12 +15,12 @@ to participate in the game.
 
 
 ## screenshot
-<img src="resources/1.png" height="200"
-/><img src="resources/1.png" height="200"
-/><img src="resources/1.png" height="200"
-/><img src="resources/1.png" height="200"
-/><img src="resources/1.png" height="200"
-/><img src="resources/1.png" height="200"
+<img src="resources/1.jpg" height="200"
+/><img src="resources/2.jpg" height="200"
+/><img src="resources/3.jpg" height="200"
+/><img src="resources/4.jpg" height="200"
+/><img src="resources/5.jpg" height="200"
+/><img src="resources/6.jpg" height="200"
 />
 
 
