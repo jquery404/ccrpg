@@ -1,6 +1,5 @@
 # ccrpg
-The Community Currency Role Play Game
-*International XR Workshop 2021 demo*
+*SWEN 422: The Community Currency Role Play Game*
 
 “The Community Currency Role Play”, which is currently played in two
 rounds using pen and paper. The objectives of the game are to create awareness of money
